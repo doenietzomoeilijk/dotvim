@@ -1,0 +1,37 @@
+filetype off
+
+" Pathogen {{{
+execute pathogen#infect()
+execute pathogen#helptags()
+" }}}
+
+let mapleader=","
+set nocompatible
+colorscheme xoria256
+syntax enable
+
+" Movement {{{
+" Quick jumping between splits and buffers
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+nnoremap <C-PageDown> :bn<CR>
+nnoremap <C-PageUp> :bp<CR>
+
+" For everyone who uses wrap
+nnoremap j gj
+nnoremap k gk
+
+" Highlighting search
+set showmatch
+set matchpairs+=<:>
+set hlsearch
+set incsearch
+
+nnoremap <leader>n :nohlsearch<CR> " Setting it to enter mucked with error windows.
+noremap <leader>h :let @/ = ""<CR> " clear search pattern to disable hlsearch
+
+" Enable matchit.vim to make % even more useful.
+runtime macros/matchit.vim
+" }}}
