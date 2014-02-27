@@ -4,3 +4,9 @@
 [submodule ".vim/bundle/xoria256"]
 	path = .vim/bundle/xoria256
 	url = https://github.com/vim-scripts/xoria256.vim.git
+[submodule ".vim/bundle/phpcomplete"]
+	path = .vim/bundle/phpcomplete
+	url = https://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/bundle/vim-syntax"]
+	path = .vim/bundle/vim-syntax
+	url = git://gitorious.org/jasonwoof/vim-syntax.git
