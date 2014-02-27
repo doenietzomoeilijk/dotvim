@@ -228,6 +228,12 @@ let g:SuperTabDefaultCompletionType='context'
 " augroup END
 " }}}
 
+" Syntastic {{{
+noremap <leader>st :SyntasticToggleMode<CR>
+noremap <leader>sc :SyntasticCheck<CR>
+noremap <leader>se :Errors<CR>
+" }}}
+
 " PHP {{{
 " Disable auto-php-folding if PIV is plugged in
 augroup PHP
