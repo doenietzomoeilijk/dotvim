@@ -121,6 +121,9 @@ nnoremap Q @q
 if (exists(':AirlineRefresh'))
     let g:airline_inactive_collapse=1
     let g:airline_powerline_fonts=0
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_buffers = 0
+    let g:airline_section_y = ''
 
     let g:airline_symbols.linenr = '␊'
     let g:airline_symbols.linenr = '␤'
@@ -229,9 +232,17 @@ let g:SuperTabDefaultCompletionType='context'
 " }}}
 
 " Syntastic {{{
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
 noremap <leader>st :SyntasticToggleMode<CR>
 noremap <leader>sc :SyntasticCheck<CR>
 noremap <leader>se :Errors<CR>
+" }}}
+
+" DelimitMate {{{
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
 " }}}
 
 " PHP {{{
