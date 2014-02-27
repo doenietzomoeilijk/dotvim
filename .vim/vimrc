@@ -76,6 +76,7 @@ set cursorline
 nnoremap <leader>c :set cursorline!<CR>
 nnoremap <leader>C :set cursorcolumn!<CR>
 
+set backspace=2
 " Give us some room for feedback. Prevents 90% of 'Press enter to continue'.
 set cmdheight=3
 
@@ -307,7 +308,7 @@ augroup Vimrc
     endif
 
     if (exists(':AirlineRefresh'))
-        AirlineRefresh
+        autocmd BufWritePost $MYVIMRC AirlineRefresh
     endif
 augroup END
 
