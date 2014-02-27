@@ -1,5 +1,43 @@
 " vim: set filetype=vim foldmethod=marker foldlevel=1 foldcolumn=0 et tw=78:"{{{
 
+set encoding=utf-8
+let mapleader = ","
+
+" Paths and backups {{{
+" Directories that have // at the end will be expanded to the full file path
+" See: http://stackoverflow.com/questions/4331776/change-vim-swap-backup-undo-file-name/4331812#4331812
+
+" Move temporary files to ~/.vimtmp/ instead of current dir
+if ! isdirectory(expand('~/.vimtmp'))
+   call mkdir(expand('~/.vimtmp'))
+endif
+if isdirectory(expand('~/.vimtmp'))
+   set directory=~/.vimtmp//
+else
+   set directory=.,/var/tmp//,/tmp//
+endif
+
+" Save tons of history and undo (Thanks, Arnout)
+set history=10000
+set undolevels=10000
+
+" Set persistent undo, only works on >73
+if exists("&undodir") && exists("&undofile")
+  " Setup persistently store the undo folder
+  if ! isdirectory(expand('~/.vimundo'))
+    call mkdir(expand('~/.vimundo'))
+  endif
+  set undodir=~/.vimundo
+  set undofile
+endif
+
+set backupskip=/tmp/*,/private/tmp/*" 
+if ! isdirectory(expand('~/.vimbackup'))
+  call mkdir(expand('~/.vimbackup'))
+endif
+set backupdir=~/.vimbackup//
+" }}}
+
 " Pathogen {{{
 filetype off
 runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -7,17 +45,6 @@ execute pathogen#infect()
 execute pathogen#helptags()
 syntax enable
 filetype plugin indent on
-" }}}
-
-" Coding defaults {{{
-set tabstop=4
-set shiftwidth=4
-set nosmartindent " As smartindent conflicts with filetype
-set nocindent
-set smarttab
-set expandtab
-set shiftround
-set textwidth=80
 " }}}
 
 " UI {{{
@@ -30,16 +57,13 @@ endif
 set bg=dark
 colorscheme xoria256
 
-let mapleader=","
-
 " A nice EOL guide column.
 if exists("&colorcolumn")
   set colorcolumn=+1,+41
-  hi ColorColumn ctermbg=237 guibg=#232526
+  " hi ColorColumn ctermbg=237 guibg=#232526
 endif
 
 set ruler
-
 set number
 nnoremap <leader>nn :set number!<CR>
 
@@ -52,11 +76,19 @@ set cursorline
 nnoremap <leader>c :set cursorline!<CR>
 nnoremap <leader>C :set cursorcolumn!<CR>
 
-set cmdheight=3 " Give us some room for feedback. Prevents 90% of 'Press enter
-                " to continue'.
+" Give us some room for feedback. Prevents 90% of 'Press enter to continue'.
+set cmdheight=3
+
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
+
+" End the bell terror
+set noerrorbells visualbell t_vb=
+augroup NoVisualBellFluff
+    autocmd!
+    autocmd GUIEnter * set vb t_vb=
+augroup END
 
 " Casing and wrapping
 set ignorecase smartcase
@@ -84,6 +116,40 @@ set mouse=a
 
 " Who uses ex mode anyway?
 nnoremap Q @q
+
+" vim-airline {{{
+if (exists(':AirlineRefresh'))
+    let g:airline_inactive_collapse=1
+    let g:airline_powerline_fonts=0
+
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.whitespace = 'Ξ'
+    let g:airline_left_sep = '⮀'
+    let g:airline_left_alt_sep = '⮁'
+    let g:airline_right_sep = '⮂'
+    let g:airline_right_alt_sep = '⮃'
+    let g:airline_symbols.branch = '⭠'
+    let g:airline_symbols.readonly = '⭤'
+    let g:airline_symbols.linenr = '⭡'
+endif
+" }}}
+" }}}
+
+" Coding defaults {{{
+set tabstop=4
+set shiftwidth=4
+set nosmartindent " As smartindent conflicts with filetype
+set nocindent
+set smarttab
+set expandtab
+set shiftround
+set textwidth=80
 " }}}
 
 " Movement {{{
@@ -142,61 +208,81 @@ vnoremap <F1> <Esc>
 " Faster escape
 set ttimeoutlen=10
 augroup FastEscape
-  autocmd!
-  au InsertEnter * set timeoutlen=0
-  au InsertLeave * set timeoutlen=1000
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
 augroup END
 
 " See :help fo-table for letter meaning
 set formatoptions=lcqn
 " }}}
 
-" Paths and backups {{{
-" Directories that have // at the end will be expanded to the full file path
-" See: http://stackoverflow.com/questions/4331776/change-vim-swap-backup-undo-file-name/4331812#4331812
+" PHP {{{
+" Disable auto-php-folding if PIV is plugged in
+augroup PHP
+    autocmd!
+    autocmd BufRead,BufEnter */hotelmodules/*.class setlocal ft=php
+    autocmd FileType php setlocal keywordprg=pman
+augroup END
 
-" Move temporary files to ~/.vimtmp/ instead of current dir
-if ! isdirectory(expand('~/.vimtmp'))
-   call mkdir(expand('~/.vimtmp'))
-endif
-if isdirectory(expand('~/.vimtmp'))
-   set directory=~/.vimtmp//
-else
-   set directory=.,/var/tmp//,/tmp//
-endif
+" Options:  php_sql_query = 1  for SQL syntax highlighting inside strings
+"           php_htmlInStrings = 1  for HTML syntax highlighting inside strings
+"           php_baselib = 1  for highlighting baselib functions
+"           php_asp_tags = 1  for highlighting ASP-style short tags
+"           php_parent_error_close = 1  for highlighting parent error ] or )
+"           php_parent_error_open = 1  for skipping an php end tag, if there
+"           exists an open ( or [ without a closing one
+"           php_oldStyle = 1  for using old colorstyle
+"           php_noShortTags = 1  don't sync <? ?> as php
+"           php_folding = 1  for folding classes and functions
+"           php_folding = 2  for folding all { } regions
+"           php_sync_method = x
+"                             x=-1 to sync by search ( default )
+"                             x>0 to sync at least x lines backwards
+"                             x=0 to sync from start
+"
+"       Added by Peter Hodge On June 9, 2006:
+"           php_special_functions = 1|0 to highlight functions with abnormal
+"           behaviour
+"           php_alt_comparisons = 1|0 to highlight comparison operators in an
+"           alternate colour
+"           php_alt_assignByReference = 1|0 to highlight '= &' in an alternate
+"           colour
+let php_sql_query = 0
+let php_htmlInStrings = 0
+let php_asp_tags = 0
+let php_oldStyle = 1
+let php_noShortTags = 0
+let php_folding = 0
 
-" Save tons of history and undo (Thanks, Arnout)
-set history=10000
-set undolevels=10000
+let g:DisableAutoPHPFolding = 1
+let g:PHP_vintage_case_default_indent = 1
+let PHP_outdentphpescape = 0
 
-" Set persistent undo, only works on >73
-if exists("&undodir") && exists("&undofile")
-  " Setup persistently store the undo folder
-  if ! isdirectory(expand('~/.vimundo'))
-    call mkdir(expand('~/.vimundo'))
-  endif
-  set undodir=~/.vimundo
-  set undofile
-endif
+" https://github.com/shawncplus/phpcomplete.vim#options
+let g:phpcomplete_parse_docblock_comments = 1
 
-set backupskip=/tmp/*,/private/tmp/*" 
-if ! isdirectory(expand('~/.vimbackup'))
-  call mkdir(expand('~/.vimbackup'))
-endif
-set backupdir=~/.vimbackup//
+set tags+=~/.vim/tags/php.tags
 " }}}
 
 " Editing the .vimrc file {{{
 " From http://github.com/devjj/vim-config/blob/master/.vimrc After editing, run
 augroup Vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC | exec 'echom "vimrc reloaded after save."'
-  autocmd FileType vim setlocal keywordprg=:help
-  " autocmd BufWritePost $MYVIMRC source $MYVIMRC | call Pl#ReloadColorscheme() | exec 'echom "vimrc reloaded after save."'
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC | exec 'echom "vimrc reloaded after save."'
+    autocmd FileType vim setlocal keywordprg=:help
+    " autocmd BufWritePost $MYVIMRC source $MYVIMRC | call Pl#ReloadColorscheme() | exec 'echom "vimrc reloaded after save."'
 
-  if (exists(':PowerlineReloadColorscheme'))
-      " Reloading vimrc throws the Powerline theme. Reload it.
-      PowerlineReloadColorscheme
-  endif
+    if (exists(':PowerlineReloadColorscheme'))
+        " Reloading vimrc throws the Powerline theme. Reload it.
+        PowerlineReloadColorscheme
+    endif
+
+    if (exists(':AirlineRefresh'))
+        AirlineRefresh
+    endif
 augroup END
 
+noremap <Leader>vv :vsplit $MYVIMRC<CR>
+noremap <Leader>V :source $MYVIMRC<CR>:filetype detect<CR>:echom 'vimrc reloaded'<CR>
+" }}}
