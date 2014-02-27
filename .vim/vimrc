@@ -1,4 +1,4 @@
-" vim: set filetype=vim foldmethod=marker foldlevel=1 foldcolumn=0 et tw=78:"{{{
+" vim: set filetype=vim foldmethod=marker foldlevel=2 foldcolumn=0 et tw=78:"{{{
 
 set encoding=utf-8
 let mapleader = ","
@@ -250,7 +250,6 @@ let delimitMate_expand_space = 1
 " Disable auto-php-folding if PIV is plugged in
 augroup PHP
     autocmd!
-    autocmd BufRead,BufEnter */hotelmodules/*.class setlocal ft=php
     autocmd FileType php setlocal keywordprg=pman
 augroup END
 
