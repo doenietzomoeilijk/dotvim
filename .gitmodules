@@ -61,3 +61,12 @@
 [submodule ".vim/bundle/vim-web-indent"]
 	path = .vim/bundle/vim-web-indent
 	url = https://github.com/lukaszb/vim-web-indent.git
+[submodule ".vim/bundle/vim-jinja"]
+	path = .vim/bundle/vim-jinja
+	url = https://github.com/jeanmenezes/vim-jinja.git
+[submodule ".vim/bundle/vim-stylus"]
+	path = .vim/bundle/vim-stylus
+	url = https://github.com/wavded/vim-stylus.git
+[submodule ".vim/bundle/vim-json"]
+	path = .vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json.git
