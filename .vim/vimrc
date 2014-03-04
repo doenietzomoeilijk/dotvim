@@ -109,6 +109,11 @@ set equalalways
 set eadirection=hor
 set splitright
 
+" Folding
+set foldmethod=indent
+set foldlevel=999
+set foldcolumn=3
+
 " Allow us to switch away from buffers with changes in them.
 set hidden
 
@@ -123,6 +128,9 @@ set mouse=a
 
 " Who uses ex mode anyway?
 nnoremap Q @q
+command! W w
+command! Q q
+command! Wq wq
 
 set wildmenu
 set wildmode=list:longest,full
@@ -266,11 +274,12 @@ let g:ctrlp_show_hidden=0
 " }}}
 " }}}
 
+" File Formats {{{
 " PHP {{{
 " Disable auto-php-folding if PIV is plugged in
 augroup PHP
     autocmd!
-    autocmd FileType php setlocal keywordprg=pman
+    autocmd FileType php setlocal keywordprg=pman foldmethod=syntax
 augroup END
 
 " Options:  php_sql_query = 1  for SQL syntax highlighting inside strings
@@ -311,7 +320,32 @@ let PHP_outdentphpescape = 0
 let g:phpcomplete_parse_docblock_comments = 1
 
 set tags+=~/.vim/tags/php.tags
+" }}} end PHP
+
+" Twig {{{
+augroup Twig
+    autocmd!
+    autocmd BufRead,BufNewFile,BufEnter *.twig setlocal ft=htmljinja shiftwidth=2 tabstop=2
+augroup END
 " }}}
+
+" Javascript {{{
+let g:javascript_conceal=1
+let g:javascript_enable_domhtmlcss=1
+augroup Javascript
+    autocmd!
+    autocmd FileType javascript let b:javascript_fold=1 | setlocal sw=2 ts=2
+augroup END
+" }}}
+
+" JSON {{{
+let g:vim_json_syntax_conceal=0
+augroup JSON
+    autocmd!
+    autocmd BufRead,BufNewFile,BufEnter *.json setlocal ft=json foldmethod=syntax
+augroup END
+" }}}
+" }}} end File Formats
 
 " On Save Whitespace removal {{{
 function! StripTrailingWhite()
