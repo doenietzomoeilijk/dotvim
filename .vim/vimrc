@@ -276,10 +276,12 @@ let g:ctrlp_show_hidden=0
 
 " File Formats {{{
 " PHP {{{
-" Disable auto-php-folding if PIV is plugged in
+" Always add php.tags since that's my bread and butter.
+set tags+=~/.vim/tags/php.tags
+
 augroup PHP
     autocmd!
-    autocmd FileType php setlocal keywordprg=pman foldmethod=syntax
+    autocmd FileType php setlocal keywordprg=pman foldmethod=syntax 
 augroup END
 
 " Options:  php_sql_query = 1  for SQL syntax highlighting inside strings
@@ -318,8 +320,6 @@ let PHP_outdentphpescape = 0
 
 " https://github.com/shawncplus/phpcomplete.vim#options
 let g:phpcomplete_parse_docblock_comments = 1
-
-set tags+=~/.vim/tags/php.tags
 " }}} end PHP
 
 " Twig {{{
@@ -342,7 +342,7 @@ augroup END
 let g:vim_json_syntax_conceal=0
 augroup JSON
     autocmd!
-    autocmd BufRead,BufNewFile,BufEnter *.json setlocal ft=json foldmethod=syntax
+    autocmd FileType json setlocal foldmethod=syntax sw=2 ts=2
 augroup END
 " }}}
 " }}} end File Formats
