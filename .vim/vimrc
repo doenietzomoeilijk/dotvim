@@ -59,7 +59,10 @@ elseif &term =~ "256color"
 endif
 
 set bg=dark
-colorscheme xoria256
+" colorscheme xoria256
+let g:rehash256=1
+let g:molokai_original=1
+colorscheme molokai
 
 " A nice EOL guide column.
 if exists("&colorcolumn")
