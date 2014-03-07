@@ -40,6 +40,9 @@ set backupdir=~/.vimbackup//
 set wildignore+=*/.git/*,*/.ht/*,*/.svn/*,*DS_Store*,*/._*
 set wildignore+=*.dev.js,*.dev.css,*.min.js,*.min.css
 set wildignore+=*/vendor/*
+
+" CD to current file path.
+nnoremap <leader>cd :lcd %:p:h<CR>
 " }}}
 
 " Pathogen {{{
