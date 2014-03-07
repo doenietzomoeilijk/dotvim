@@ -232,6 +232,10 @@ let g:SuperTabDefaultCompletionType='context'
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
+
+" Disable PHPCS for CSS.
+let g:loaded_syntastic_css_phpcs_checker=1
+
 noremap <leader>st :SyntasticToggleMode<CR>
 noremap <leader>sc :SyntasticCheck<CR>
 noremap <leader>se :Errors<CR>
@@ -326,6 +330,13 @@ let g:phpcomplete_parse_docblock_comments = 1
 augroup Twig
     autocmd!
     autocmd BufRead,BufNewFile,BufEnter *.twig setlocal ft=htmljinja shiftwidth=2 tabstop=2
+augroup END
+" }}}
+
+" Stylus {{{
+augroup Stylus
+    autocmd!
+    autocmd FileType stylus setlocal sw=2 ts=2
 augroup END
 " }}}
 
