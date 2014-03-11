@@ -1,0 +1,151 @@
+snippet /* "Docblock"
+/**
+ * ${1}
+ */
+endsnippet
+
+snippet php "PHP File"
+<?php
+/**
+ * ${1:A short description of what this file does.}
+ *
+ * @package ${2:Packagename}
+ * @subpackage ${3:Subpackage}
+ * @copyright `date +%Y` ${4:Max Roeleveld}
+ */
+
+endsnippet
+
+snippet class "Class" !b
+/**
+ * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`}
+ */
+class $1
+{
+}
+endsnippet
+
+snippet classi "Class iterator" !b
+/**
+ * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`}
+ */
+class $1 implements \Iterator
+{
+    /**
+     * Table name.
+     *
+     * @var string $table
+     */
+    private $table = '${2}';
+
+    /**
+     * Database holder.
+     *
+     * @var \Doctrine\DBAL\Connection $db
+     */
+    private $db;
+
+    /**
+     * Statement holder.
+     *
+     * @var \Doctrine\DBAL\Driver\PDOStatement type $stmt
+     */
+    private $stmt;
+
+    /**
+     * Holder for data.
+     *
+     * @var array $array
+     */
+    private $array = array();
+
+    /**
+     * Pointer for data array.
+     *
+     * @var integer $position
+     */
+    private $position = 0;
+
+    /**
+     * Constructor.
+     *
+     * @param \Doctrine\DBAL\Connection $db
+     */
+    public function __construct(\Doctrine\DBAL\Connection $db)
+    {
+        $this->db = $db;
+    }
+
+    public function rewind()
+    {
+        $this->position = 0;
+    }
+
+    public function current()
+    {
+        return $this->array[$this->position];
+    }
+
+    public function key()
+    {
+        return $this->position;
+    }
+
+    public function next()
+    {
+        ++$this->position;
+    }
+
+    public function valid()
+    {
+        return isset($this->array[$this->position]);
+    }
+
+    /**
+     * How many did we get?
+     *
+     * @return integer
+     */
+    public function count()
+    {
+        return count($this->array);
+    }
+
+    /**
+     * Reset the data.
+     *
+     * @return void
+     */
+    private function reset()
+    {
+        $this->array = array();
+        $this->stmt = null;
+        $this->position = 0;
+    }
+}
+endsnippet
+
+snippet fun "PHP Function" !b
+/**
+ * ${4:Brief description.}
+ * 
+ * ${5}@return ${6:void}
+ */
+${1}function ${2:functionName}(${3})
+{
+    ${7}
+}
+endsnippet
+
+snippet afun "PHP anonymous function"
+function (${1})${2: use (${3})} {${4}}
+endsnippet
+
+snippet var "Class property" !b
+/**
+ * ${4:Variable description.}
+ *
+ * @var ${2:type} $${3:varname}
+ */
+${1:private|public|protected} \$$3${5: = initial value};
+endsnippet
