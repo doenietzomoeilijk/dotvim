@@ -281,6 +281,20 @@ endif
 " CtrlP {{{
 let g:ctrlp_dotfiles=0
 let g:ctrlp_show_hidden=0
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>m :CtrlPMRUFiles<CR>
+nnoremap <C-P> :call <SID>CallCtrlPBasedOnGitStatus()<CR>
+ 
+function! s:CallCtrlPBasedOnGitStatus()
+    let s:git_status = system("git status")
+
+    if v:shell_error == 128
+        execute "CtrlPCurFile"
+    else
+        execute "CtrlPRoot"
+    endif
+endfunction
+
 " }}}
 " }}}
 
