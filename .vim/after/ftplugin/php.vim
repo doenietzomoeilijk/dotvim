@@ -29,7 +29,7 @@ let php_htmlInStrings = 0
 let php_asp_tags = 0
 let php_oldStyle = 1
 let php_noShortTags = 0
-let php_folding = 0
+let php_folding = 2
 
 let g:DisableAutoPHPFolding = 1
 let g:PHP_vintage_case_default_indent = 1
