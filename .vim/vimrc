@@ -59,10 +59,10 @@ if &term =~ "xterm"
     set t_Co=256
 elseif &term =~ "256color"
     set t_Co=256
-
-    " Clearing using background colour -- needed inside tmux.
-    set t_ut=
 endif
+
+" Clearing using background colour -- needed inside tmux.
+set t_ut=
 
 set bg=dark
 " colorscheme xoria256
