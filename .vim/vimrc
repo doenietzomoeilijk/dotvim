@@ -122,6 +122,11 @@ set splitright
 set foldmethod=indent
 set foldlevel=999
 set foldcolumn=3
+augroup SaveViews
+    autocmd!
+    autocmd BufWritePost,BufLeave,WinLeave *.* mkview
+    autocmd BufWinEnter *.* silent loadview
+augroup END
 
 " Allow us to switch away from buffers with changes in them.
 set hidden
