@@ -122,17 +122,9 @@ set splitright
 set foldmethod=indent
 set foldlevel=999
 set foldcolumn=3
-augroup SaveViews
-    autocmd!
-    autocmd BufWritePost,BufLeave,WinLeave *.* mkview
-    autocmd BufWinEnter *.* silent loadview
-augroup END
 
 " Allow us to switch away from buffers with changes in them.
 set hidden
-
-" Resize windows on metawindow resize
-autocmd VimResized * exe "normal! \<C-w>="
 
 " Toggle invisible chars
 noremap <leader>i :set list!<CR>
@@ -148,6 +140,18 @@ command! Wq wq
 
 set wildmenu
 set wildmode=list:longest,full
+
+augroup UI
+    autocmd!
+    autocmd BufWritePost,BufLeave,WinLeave *.* mkview
+    autocmd BufWinEnter *.* silent loadview
+
+    " Resize windows on metawindow resize
+    autocmd VimResized * exe "normal! \<C-w>="
+augroup END
+
+" Visually select the last edited/pasted/... text.
+nnoremap gV `[v`]
 
 " Movement {{{
 " Quick jumping between splits and buffers
