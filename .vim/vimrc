@@ -155,10 +155,10 @@ nnoremap gV `[v`]
 
 " Movement {{{
 " Quick jumping between splits and buffers
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
+" nnoremap <C-J> <C-W>j
+" nnoremap <C-K> <C-W>k
+" nnoremap <C-H> <C-W>h
+" nnoremap <C-L> <C-W>l
 
 " H is easier to reach than ^
 nnoremap H ^
@@ -312,6 +312,12 @@ function! s:CallCtrlPBasedOnGitStatus()
 endfunction
 
 " }}}
+
+" Fugitive / diffing {{{
+xnoremap dp :diffput<CR>
+xnoremap dg :diffget<CR>
+" }}}
+
 " }}}
 
 " On Save Whitespace removal {{{
