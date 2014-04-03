@@ -318,6 +318,14 @@ xnoremap dp :diffput<CR>
 xnoremap dg :diffget<CR>
 " }}}
 
+" Splitjoin {{{
+if (exists(":SplitjoinJoin"))
+    let g:splitjoin_split_mapping=''
+    let g:splitjoin_join_mapping=''
+    nmap sj :SplitjoinSplit<CR>
+    nmap sk :SplitjoinJoin<CR>
+endif 
+" }}}
 " }}}
 
 " On Save Whitespace removal {{{
