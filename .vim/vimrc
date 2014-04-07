@@ -254,6 +254,8 @@ let g:syntastic_always_populate_loc_list = 1
 " Disable PHPCS for CSS.
 let g:loaded_syntastic_css_phpcs_checker=1
 
+let g:syntastic_php_phpcs_args="--standard=PSR2"
+
 " let g:syntastic_javascript_jshint_args="-c ~/.jshintrc"
 
 noremap <leader>st :SyntasticToggleMode<CR>
@@ -319,12 +321,10 @@ xnoremap dg :diffget<CR>
 " }}}
 
 " Splitjoin {{{
-if (exists(":SplitjoinJoin"))
-    let g:splitjoin_split_mapping=''
-    let g:splitjoin_join_mapping=''
-    nmap sj :SplitjoinSplit<CR>
-    nmap sk :SplitjoinJoin<CR>
-endif 
+let g:splitjoin_split_mapping=''
+let g:splitjoin_join_mapping=''
+nmap sj :SplitjoinSplit<CR>
+nmap sk :SplitjoinJoin<CR>
 " }}}
 " }}}
 
