@@ -319,7 +319,7 @@ xnoremap dg :diffget<CR>
 " }}}
 
 " Splitjoin {{{
-if (exists(":SplitjoinJoin"))
+if (exists(":SplitjoinJoin") == 2)
     let g:splitjoin_split_mapping=''
     let g:splitjoin_join_mapping=''
     nmap sj :SplitjoinSplit<CR>
