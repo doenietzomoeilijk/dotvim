@@ -109,3 +109,6 @@
 [submodule ".vim/bundle/unite-colorscheme"]
 	path = .vim/bundle/unite-colorscheme
 	url = https://github.com/ujihisa/unite-colorscheme.git
+[submodule ".vim/bundle/unite-neomru"]
+	path = .vim/bundle/unite-neomru
+	url = https://github.com/Shougo/neomru.vim.git
