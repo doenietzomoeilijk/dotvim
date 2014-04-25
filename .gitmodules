@@ -100,3 +100,6 @@
 [submodule ".vim/bundle/splitjoin"]
 	path = .vim/bundle/splitjoin
 	url = git://github.com/AndrewRadev/splitjoin.vim.git
+[submodule ".vim/bundle/vimproc"]
+	path = .vim/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.vim.git
