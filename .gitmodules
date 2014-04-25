@@ -112,3 +112,6 @@
 [submodule ".vim/bundle/unite-neomru"]
 	path = .vim/bundle/unite-neomru
 	url = https://github.com/Shougo/neomru.vim.git
+[submodule ".vim/bundle/unite-cmdmatch"]
+	path = .vim/bundle/unite-cmdmatch
+	url = https://github.com/majkinetor/unite-cmdmatch.git
