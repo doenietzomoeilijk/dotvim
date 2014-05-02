@@ -115,3 +115,9 @@
 [submodule ".vim/bundle/unite-cmdmatch"]
 	path = .vim/bundle/unite-cmdmatch
 	url = https://github.com/majkinetor/unite-cmdmatch.git
+[submodule ".vim/bundle/unite-tag"]
+	path = .vim/bundle/unite-tag
+	url = https://github.com/tsukkee/unite-tag.git
+[submodule ".vim/bundle/inkpot"]
+	path = .vim/bundle/inkpot
+	url = https://github.com/ciaranm/inkpot.git
