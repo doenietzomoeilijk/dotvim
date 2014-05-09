@@ -9,9 +9,8 @@ snippet php "PHP File"
 /**
  * ${1:A short description of what this file does.}
  *
- * @package ${2:Packagename}
- * @subpackage ${3:Subpackage}
- * @copyright `date +%Y` ${4:Max Roeleveld}
+ * @copyright ${2}
+ * @author ${3:Max Roeleveld}
  */
 
 endsnippet
@@ -20,8 +19,9 @@ snippet class "Class" !b
 /**
  * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`}
  */
-class $1
+class $1 ${2}
 {
+${3}
 }
 endsnippet
 

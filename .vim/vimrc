@@ -360,14 +360,14 @@ endif
 "     " autocmd BufEnter * if empty(&buftype) | nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR> | endif
 " augroup END
 
-nnoremap <Leader>b :<C-u>Unite buffer -resume<CR>
-nnoremap <Leader>f :<C-u>Unite file -resume<CR>
+nnoremap <Leader>b :<C-u>Unite buffer -start-insert<CR>
+nnoremap <Leader>f :<C-u>Unite file<CR>
 " async:! to limit to git top level
-nnoremap <Leader>l :<C-u>Unite -resume -start-insert file_rec/async:!<CR>
-nnoremap <Leader>m :<C-u>Unite neomru/file -resume<CR>
-nnoremap <Leader>y :<C-u>Unite history/yank -resume<CR>
-nnoremap <Leader>o :<C-u>Unite outline -resume<CR>
-nnoremap <Leader>t :<C-u>Unite tag -resume<CR>
+nnoremap <Leader>l :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <Leader>m :<C-u>Unite neomru/file<CR>
+nnoremap <Leader>y :<C-u>Unite history/yank<CR>
+nnoremap <Leader>o :<C-u>Unite outline<CR>
+nnoremap <Leader>t :<C-u>Unite tag<CR>
 " }}}
 " }}}
 
