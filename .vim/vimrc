@@ -2,6 +2,7 @@
 
 set encoding=utf-8
 let mapleader = ","
+set shortmess+=I
 
 " Paths and backups {{{
 " Directories that have // at the end will be expanded to the full file path
