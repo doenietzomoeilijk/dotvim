@@ -1,5 +1,12 @@
-setlocal tags+=~/.vim/tags/php.tags
-setlocal keywordprg=pman foldmethod=syntax 
+if filereadable(expand("~/Sites/tags.zend"))
+    setlocal tags+=~/Sites/tags.zend
+endif
+if filereadable(expand("~/Sites/tags.symfony"))
+    setlocal tags+=~/Sites/tags.symfony
+endif
+
+setlocal keywordprg=pman
+setlocal foldmethod=syntax 
 
 " Options:  php_sql_query = 1  for SQL syntax highlighting inside strings
 "           php_htmlInStrings = 1  for HTML syntax highlighting inside strings

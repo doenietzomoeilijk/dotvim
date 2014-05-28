@@ -1,3 +1,8 @@
+global !p
+def camelcase(t):
+	return t[0].capitalize() + t[1:]
+endglobal
+
 snippet /* "Docblock"
 /**
  * ${1}
@@ -15,19 +20,31 @@ snippet php "PHP File"
 
 endsnippet
 
+snippet "gs( (\S+))?" "Getter/Setter" !br
+/**
+ * Getter voor ${1:`!p snip.rv = match.group(2) if match.group(1) is not None else "var"`}.
+ * 
+ * @return ${2:type} \$$1
+ */
+public function get`!p snip.rv = camelcase(t)`()
+{
+	return \$this->$1;
+}
+endsnippet
+
 snippet class "Class" !b
 /**
- * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`}
+ * Class ${1:`!p snip.rv = camelcase(snip.fn.split('.')[0])`}
  */
-class $1 ${2}
+class $1${2: }
 {
-${3}
+	${3}
 }
 endsnippet
 
 snippet classi "Class iterator" !b
 /**
- * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`}
+ * Class ${1:`!p snip.rv = camelcase(snip.fn.split('.')[0])`}
  */
 class $1 implements \Iterator
 {
@@ -133,12 +150,12 @@ snippet fun "PHP Function" !b
  */
 ${1}function ${2:functionName}(${3})
 {
-    ${7}
+    ${VISUAL:\/\/ function body}
 }
 endsnippet
 
 snippet afun "PHP anonymous function"
-function (${1})${2: use (${3})} {${4}}
+function (${1})${2: use (${3})} {${4:${VISUAL}}}
 endsnippet
 
 snippet var "Class property" !b
@@ -148,4 +165,21 @@ snippet var "Class property" !b
  * @var ${2:type} $${3:varname}
  */
 ${1:private|public|protected} \$$3${5: = initial value};
+endsnippet
+
+snippet const "Class constant" !b
+/**
+ * ${4:Variable description.}
+ *
+ * @var ${2:type} $1
+ */
+const ${1:varname} = ${3:initial value};
+endsnippet
+
+snippet die "die(var_dump())" !b
+die(var_dump(${1:${VISUAL/;$//g}}));
+endsnippet
+
+snippet debug "DebugBar addMessage" !b
+Core::debug()->addMessage(${1:${VISUAL/;$//g}});
 endsnippet

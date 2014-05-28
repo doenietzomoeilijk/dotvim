@@ -118,6 +118,6 @@
 [submodule ".vim/bundle/inkpot"]
 	path = .vim/bundle/inkpot
 	url = https://github.com/ciaranm/inkpot.git
-[submodule ".vim/bundle/vim-dbgp"]
-	path = .vim/bundle/vim-dbgp
-	url = https://github.com/jsoriano/vim-dbgp.git
+[submodule ".vim/bundle/vdebug"]
+	path = .vim/bundle/vdebug
+	url = https://github.com/joonty/vdebug.git
