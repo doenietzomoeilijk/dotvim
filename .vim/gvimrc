@@ -26,9 +26,10 @@ if has('gui_macvim')
     set linespace=2
     " set gfn=EnvyCodeR:h13
     " set gfn=Anonymous\ Pro\ for\ Powerline:h15
-    " set gfn=Inconsolata-dz:h12
+    " set gfn=Inconsolata-dz:h11
     " set gfn=Source\ Code\ Pro\ Light\ for\ Powerline:h13
-    set gfn=Sauce\ Code\ Powerline:h12
+    " set gfn=Sauce\ Code\ Powerline:h11
+    set gfn=Menlo:h11
     " set gfn=Envy\ Code\ R\ for\ Powerline:h13
     highlight Comment gui=italic
 endif
