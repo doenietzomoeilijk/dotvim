@@ -34,7 +34,7 @@ if exists("&undodir") && exists("&undofile")
   set undofile
 endif
 
-set backupskip=/tmp/*,/private/tmp/*" 
+set backupskip=/tmp/*,/private/tmp/*"
 if ! isdirectory(expand('~/.vimbackup'))
   call mkdir(expand('~/.vimbackup'))
 endif
@@ -58,7 +58,7 @@ filetype plugin indent on
 " }}}
 
 " UI {{{
-if &term =~ "xterm" 
+if &term =~ "xterm"
     set t_Co=256
 elseif &term =~ "256color"
     set t_Co=256
@@ -88,7 +88,7 @@ nnoremap <leader>nn :set number!<CR>
 if exists("&relativenumber")
     set relativenumber
     nnoremap <leader>NN :set relativenumber!<CR>
-endif 
+endif
 
 set cursorline
 nnoremap <leader>c :set cursorline!<CR>
@@ -116,7 +116,7 @@ set ignorecase smartcase
 set nowrap " We just CODE to the correct width, bitches!
 set whichwrap+=<,>,h,l
 set linebreak
-set showbreak=~\ \ \ 
+set showbreak=~\ \ \
 
 " Split stuff
 set equalalways
@@ -315,7 +315,7 @@ let g:ctrlp_clear_cache_on_exit=0
 " nnoremap <Leader>b :CtrlPBuffer<CR>
 " nnoremap <Leader>m :CtrlPMRUFiles<CR>
 " nnoremap <C-P> :call <SID>CallCtrlPBasedOnGitStatus()<CR>
- 
+
 function! s:CallCtrlPBasedOnGitStatus()
     let s:git_status = system("git status")
 
@@ -380,6 +380,27 @@ nnoremap <Leader>m :<C-u>Unite neomru/file<CR>
 nnoremap <Leader>y :<C-u>Unite history/yank<CR>
 nnoremap <Leader>o :<C-u>Unite outline<CR>
 nnoremap <Leader>t :<C-u>UniteWithCursorWord tag<CR>
+" }}}
+
+" PHPComplete {{{
+" https://github.com/shawncplus/phpcomplete.vim/issues/48
+nnoremap <Leader>jj :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
+" nnoremap <Leader>jj :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
+let g:phpcomplete_enhance_jump_to_definition = 0
+" }}}
+" {{{ PHPCS-fixer
+" If php-cs-fixer is in $PATH, you don't need to define line below
+let g:php_cs_fixer_path = "~/.composer/vendor/bin/" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                  " which level ?
+let g:php_cs_fixer_config = "default"             " configuration
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+" If you want to define specific fixers:
+"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 1                    " Return the output of command if 1, else an inline information.
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 " }}}
 " }}}
 
