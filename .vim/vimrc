@@ -137,6 +137,11 @@ noremap <leader>i :set list!<CR>
 " Oh, wait, we have a mouse.
 set mouse=a
 
+" On OSX we have a clipboard, too
+if (has("macunix"))
+    set clipboard=unnamed
+end
+
 " Who uses ex mode anyway?
 nnoremap Q @q
 command! W w
