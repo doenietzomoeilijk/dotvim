@@ -127,3 +127,6 @@
 [submodule ".vim/bundle/necomplete"]
 	path = .vim/bundle/necomplete
 	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule ".vim/bundle/vdebug"]
+	path = .vim/bundle/vdebug
+	url = https://github.com/joonty/vdebug.git

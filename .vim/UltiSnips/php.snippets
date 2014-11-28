@@ -14,8 +14,7 @@ snippet php "PHP File"
 /**
  * ${1:A short description of what this file does.}
  *
- * @copyright ${2}
- * @author ${3:Max Roeleveld}
+ * @copyright ${2:Van der Let & Partners Identity}
  */
 
 endsnippet
@@ -51,35 +50,35 @@ class $1 implements \Iterator
     /**
      * Table name.
      *
-     * @var string $table
+     * @type string $table
      */
     private $table = '${2}';
 
     /**
      * Database holder.
      *
-     * @var \Doctrine\DBAL\Connection $db
+     * @type \Doctrine\DBAL\Connection $db
      */
     private $db;
 
     /**
      * Statement holder.
      *
-     * @var \Doctrine\DBAL\Driver\PDOStatement type $stmt
+     * @type \Doctrine\DBAL\Driver\PDOStatement type $stmt
      */
     private $stmt;
 
     /**
      * Holder for data.
      *
-     * @var array $array
+     * @type array $array
      */
     private $array = array();
 
     /**
      * Pointer for data array.
      *
-     * @var integer $position
+     * @type integer $position
      */
     private $position = 0;
 
@@ -170,18 +169,14 @@ endsnippet
 
 snippet var "Class property" !b
 /**
- * ${4:Variable description.}
- *
- * @var ${2:type} $${3:varname}
+ * @type ${2:type} $${3:varname}
  */
-${1:private|public|protected} \$$3${5: = initial value};
+${1:private|public|protected} \$$3${4: = initial value};
 endsnippet
 
 snippet const "Class constant" !b
 /**
- * ${4:Variable description.}
- *
- * @var ${2:type} $1
+ * @type ${2:type} $1
  */
 const ${1:varname} = ${3:initial value};
 endsnippet
@@ -226,22 +221,24 @@ $0
 endsnippet
 
 snippet gs "PHP Class Getter Setter" b
-/*
- * Getter for $1
+/**
+ * @return ${2:integer|string|...}
  */
 public function get${1/\w+\s*/\u$0/}()
 {
-	return $this->$1;$2
+	return $this->$1;
 }
 
-/*
- * Setter for $1
+/**
+ * @param $2 $$1
+ * @return ${6:`!p snip.rv = camelcase(snip.fn.split('.')[0])`}
  */
-public function set${1/\w+\s*/\u$0/}($$1)
+public function set${1/\w+\s*/\u$0/}(${3:$2 }$$1)
 {
-	$this->$1 = $$1;$3
-	${4:return $this;}
+	$this->$1 = $$1;
+
+	return $this;
 }
-$0
+$4
 endsnippet
 
