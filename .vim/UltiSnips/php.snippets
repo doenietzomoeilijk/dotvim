@@ -153,6 +153,18 @@ ${1}function ${2:functionName}(${3})
 }
 endsnippet
 
+snippet prif "Private function" !b
+/**
+ * ${3:Brief}
+ * 
+ * ${4}@return ${5:void}
+ */
+private function ${1:functionName}(${2})
+{
+    ${VISUAL:\/\/ function body}
+}
+endsnippet
+
 snippet afun "PHP anonymous function"
 function (${1})${2: use (${3})} {${4:${VISUAL}}}
 endsnippet
